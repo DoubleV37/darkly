@@ -1,4 +1,4 @@
-import requests, time
+import requests, time, os
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import re
@@ -16,15 +16,13 @@ def get_html_content(url):
 def find_readme_links(base_url, html_content, visited_urls):
     global cpt
     soup = BeautifulSoup(html_content, 'html.parser')
-    links = []
 
     for a_tag in soup.find_all('a', href=True):
         href = a_tag['href']
         full_url = urljoin(base_url, href)
-        if cpt % 53000 == 0:
-            print("slip = ", cpt)
-            time.sleep(10)
-        cpt+=1
+        # if cpt % 53000 == 0:
+        #     print("slip = ", cpt)
+        #     time.sleep(10)
         # Éviter les boucles infinies
         if full_url in visited_urls:
             continue
@@ -32,13 +30,20 @@ def find_readme_links(base_url, html_content, visited_urls):
 
         # Vérifier si c'est un fichier README
         if 'README' in href: 
-            links.append(full_url)
+            cpt+=1
+            response = requests.head(full_url)
+            size = response.headers.get('Content-Length')
+            print(int(size))
+            if int(size) != 34:
+                print(get_html_content(full_url))
+                return True
         elif href.endswith('/'):  # Si c'est un sous-dossier
             dir_content = get_html_content(full_url)
             if dir_content:
                 # Parcourir récursivement les sous-dossiers
-                links.extend(find_readme_links(full_url, dir_content, visited_urls))
-    return links
+                if (find_readme_links(full_url, dir_content, visited_urls)):
+                    return True
+    return False
 
 def fetch_readme_contents(readme_links):
     readme_contents = []
@@ -58,16 +63,11 @@ def main(start_url, output_file):
     if not index_content:
         return
     
-    readme_links = find_readme_links(start_url, index_content, visited_urls)
-    readme_contents = fetch_readme_contents(readme_links)
-    
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.writelines(readme_contents)
-    
-    print(f"Tous les README ont été sauvegardés dans {output_file}")
+    find_readme_links(start_url, index_content, visited_urls)
+    print("C'est fini, normalement ?")
 
 if __name__ == "__main__":
-    start_url = 'http://10.11.249.37/.hidden/'  # Remplacez par l'URL de votre index
+    start_url = 'http://192.168.0.97/.hidden/'  # Remplacez par l'URL de votre index
     output_file = 'tous_les_readme.txt'
     main(start_url, output_file)
 
