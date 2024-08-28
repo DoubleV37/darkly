@@ -1,7 +1,6 @@
-import requests, time, os
+import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
-import re
 
 
 def get_html_content(url):
@@ -20,9 +19,6 @@ def find_readme_links(base_url, html_content, visited_urls):
     for a_tag in soup.find_all('a', href=True):
         href = a_tag['href']
         full_url = urljoin(base_url, href)
-        # if cpt % 53000 == 0:
-        #     print("slip = ", cpt)
-        #     time.sleep(10)
         # Éviter les boucles infinies
         if full_url in visited_urls:
             continue
@@ -33,9 +29,9 @@ def find_readme_links(base_url, html_content, visited_urls):
             cpt+=1
             response = requests.head(full_url)
             size = response.headers.get('Content-Length')
-            print(int(size))
+            print("\r", cpt, end="", flush=True)
             if int(size) != 34:
-                print(get_html_content(full_url))
+                print("\r", cpt, "\n", get_html_content(full_url))
                 return True
         elif href.endswith('/'):  # Si c'est un sous-dossier
             dir_content = get_html_content(full_url)
@@ -45,17 +41,7 @@ def find_readme_links(base_url, html_content, visited_urls):
                     return True
     return False
 
-def fetch_readme_contents(readme_links):
-    readme_contents = []
-    for link in readme_links:
-        content = get_html_content(link)
-        if content:
-            readme_contents.append(f"### Contenu de {link}\n")
-            readme_contents.append(content)
-            readme_contents.append("\n\n")
-    return readme_contents
-
-def main(start_url, output_file):
+def main(start_url):
     global cpt
     cpt = 0
     visited_urls = set()
@@ -64,10 +50,9 @@ def main(start_url, output_file):
         return
     
     find_readme_links(start_url, index_content, visited_urls)
-    print("C'est fini, normalement ?")
+    print("Ça fait beaucoup là, non ???")
 
 if __name__ == "__main__":
-    start_url = 'http://192.168.0.97/.hidden/'  # Remplacez par l'URL de votre index
-    output_file = 'tous_les_readme.txt'
-    main(start_url, output_file)
+    start_url = 'http://192.168.0.97/.hidden/'
+    main(start_url)
 
