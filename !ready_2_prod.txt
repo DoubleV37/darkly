@@ -12,16 +12,17 @@ http://10.11.249.37/?page=/../../../../../../../etc/passwd
 
 recover password : champ hidden, suppr le hidden et submit qqch en 15char
 
-###########################     A FAIRE!      ################################
-
-certainement qqch dans add image sur la page home
-
-curl sur la page albatrose en mode nsa
+curl sur la page albatrose en mode nsa + ft_bornToSec
 
 brute force user admin mdp shadow
 
 cookies
 
 1=1 UNION all SELECT * FROM users c pas complet mais c deja ca
+1 or 1=1 nous donne du resultat
+je chope le nombre de colones avec => 1 UNION SELECT 1,2 -- j'ai des resultat du coup je sais qu'il y en a 2
+je fais => 1 UNION SELECT 1, table_name FROM information_schema.tables -- et la un max de resultat
+je vais continuer a creuser mais ca sent le rectangle de tissus sur un poto
+
 
 push pas une image dans un .png
