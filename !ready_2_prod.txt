@@ -16,7 +16,8 @@ curl sur la page albatrose en mode nsa + ft_bornToSec
 
 brute force user admin mdp shadow
 
-cookies
+cookies ==> tuto pour le declancher : sur mozilla tu f12 puis onglet storage categorie cookies tu change la valeur par b326b5062b2f0e69046810717534cb09
+                                        sur chrome tu fais la meme mais l'onglet s'appel application
 
 1=1 UNION all SELECT * FROM users c pas complet mais c deja ca
 1 or 1=1 nous donne du resultat
