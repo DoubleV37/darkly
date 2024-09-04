@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
@@ -37,3 +39,9 @@ for password in password_list:
 
 # Fermer le navigateur
 driver.quit()
+
+
+# with open("10000-most-common-passwords.txt", "r") as file:
+#     passwordList = file.read().splitlines()
+
+# print(passwordList[17])
