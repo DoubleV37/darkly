@@ -1,7 +1,4 @@
-Voici un fichier `.md` qui décrit ce qu'est une attaque par force brute, comment vous avez réalisé l'attaque et quelles sont les solutions pour la contrer, y compris la solution de randomisation du délai.
-
----
-
+Voici un fichier `.md` qui décrit ce qu'est une attaque par force brute, comment vous avez réalisé l'attaque et quelles sont les solutions pour la contrer, y compris la solution de randomisation du
 # Attaque par Force Brute et Comment la Contre-Mesurer
 
 ## Qu'est-ce qu'une faille de brute force ?
