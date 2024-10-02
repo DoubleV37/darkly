@@ -1,52 +1,5 @@
 # Darkly
 
-## 1. Directory Listing (/.hidden/)
-
-### Explication de la faille
-
-Lorsqu'un serveur web n'est pas configuré correctement, il peut permettre aux utilisateurs d'accéder à un répertoire en affichant tout son contenu (fichiers et sous-répertoires). Par exemple, si vous accédez à https://example.com/.hidden/, et que le serveur n'a pas de fichier d'index (comme index.html) ou n'a pas été configuré pour bloquer l'accès à ce répertoire, le serveur affichera une liste de tous les fichiers et répertoires contenus dans .hidden.
-
-### Risques associés
-
-- Accès non autorisé à des fichiers sensibles : Certains fichiers peuvent contenir des informations sensibles, comme des configurations de serveur, des données utilisateurs, des backups, etc.
-- Exploration de l'arborescence du site : Un attaquant pourrait cartographier la structure du site et découvrir des chemins d'accès à d'autres ressources sensibles.
-- Attaques supplémentaires : Une fois que l'attaquant a découvert des fichiers sensibles, il pourrait les utiliser pour lancer d'autres attaques (par exemple, injection de code, récupération de mots de passe, etc.).
-
-### Comment corriger la faille
-
-Désactiver l'indexation des répertoires : Configurer le serveur web pour qu'il ne génère pas automatiquement de liste des fichiers d'un répertoire.
-
-- Pour Apache, vous pouvez désactiver cela en ajoutant Options -Indexes dans le fichier de configuration du serveur ou dans un fichier .htaccess.
-- Pour Nginx, vous devez vous assurer que l'option autoindex est désactivée dans la configuration du serveur.
-Restreindre l'accès aux répertoires sensibles : Utiliser des fichiers .htaccess (sur Apache) ou configurer Nginx pour restreindre l'accès à certains répertoires.
-
-Placer un fichier d'index (index.html) dans les répertoires critiques pour éviter l'affichage de la liste de fichiers.
-
-Contrôler les permissions des fichiers et répertoires : Assurez-vous que les permissions des fichiers et des répertoires sont correctement définies, de manière à ce que seuls les utilisateurs autorisés puissent y accéder.
-
-## 2. Path Traversal ou Directory Traversal ([url de la faille](http://10.11.249.37/?page=/../../../../../../../etc/passwd))
-
-### Explication de la faille
-Le Path Traversal permet à un attaquant de manipuler l'URL ou les paramètres d'une application web pour accéder à des fichiers en dehors du répertoire racine du serveur web. En exploitant cette vulnérabilité, un attaquant peut naviguer dans l'arborescence des fichiers du serveur et accéder à des fichiers sensibles comme /etc/passwd.
-
-Dans une URL vulnérable, un attaquant pourrait utiliser des séquences comme ../ (signifiant "remonter d'un répertoire") pour sortir du répertoire prévu et accéder à d'autres parties du système de fichiers du serveur.
-
-### Risques associés
-- Accès à des informations sensibles : Le fichier /etc/passwd contient des informations sur les utilisateurs du système. Même si les mots de passe ne sont plus stockés directement dans ce fichier (ils sont dans /etc/shadow), il reste une source précieuse pour des attaques ultérieures.
-- Escalade des privilèges : Un attaquant peut obtenir des informations qui l'aideront à escalader ses privilèges sur le serveur.
-- Accès à d'autres fichiers critiques : Le même principe peut être utilisé pour accéder à d'autres fichiers sensibles, comme des configurations de serveurs, des bases de données, etc.
-
-### Comment corriger la faille
-- Validation des entrées : Vérifiez et nettoyez toutes les entrées utilisateur. Assurez-vous que les paramètres d'URL n'autorisent pas de caractères spéciaux comme ../.
-
-- Contrôler les accès aux fichiers : Limitez l'accès aux fichiers en définissant des permissions strictes et en utilisant des listes blanches pour spécifier quels fichiers peuvent être accessibles via l'application.
-
-- Utiliser des chemins absolus : Dans l'application, utilisez des chemins absolus pour les fichiers et assurez-vous que les utilisateurs ne peuvent pas les modifier.
-
-- Configuration du serveur : Assurez-vous que le serveur web est correctement configuré pour éviter que l'application ne puisse accéder à des fichiers en dehors de son répertoire autorisé.
-
-- Audit de sécurité : Effectuez un audit de sécurité pour identifier et corriger toute autre vulnérabilité potentielle.
-
 ## 3. Brute-force mot de passe admin
 
 ### Explication de la faille
