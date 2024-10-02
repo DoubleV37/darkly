@@ -1,7 +1,0 @@
-
-
-/robots.txt => /whatever => decode md5   ====    /admin => root:qwerty123@
-
-ecrire <script>alert dans le feedback mais je comprends pas pk
-
-code dans l'url de la page nsa

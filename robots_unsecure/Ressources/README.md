@@ -1,0 +1,1 @@
+/robots.txt => /whatever => decode md5   ====    /admin => root:qwerty123@
