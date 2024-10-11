@@ -33,7 +33,7 @@ read PASSWORD
 curl "http://$IP_DARKLY/index.php?page=signin&username=admin&password=$PASSWORD&Login=Login#" | grep flag | awk -F': | <' '{print "\nThe flag => "$2}'
 ```
 
-### Explication du Script :
+### Explication du Script
 
 1. **Hydra** : Utilisé pour essayer une liste de 10 000 mots de passe communs afin de casser le mot de passe de l'utilisateur "admin" sur la page de connexion du serveur.
 2. **Curl** : Après avoir récupéré le mot de passe, j'ai utilisé `curl` pour envoyer une requête HTTP au serveur avec le mot de passe trouvé et rechercher un **flag** dans la réponse de la page.
@@ -59,7 +59,3 @@ Une bonne défense contre les attaques de force brute est d'encourager (ou d'imp
 ### 4. **Utilisation de l'authentification multi-facteurs (MFA)**
 
 L'authentification multi-facteurs est une méthode très efficace pour empêcher les attaques de force brute. Même si un attaquant parvient à casser le mot de passe, il lui faudra également un second facteur (comme un code envoyé par SMS ou une application d'authentification), ce qui rend l'attaque beaucoup plus difficile.
-
----
-
-Avec ces mesures en place, les attaques par force brute deviennent beaucoup plus difficiles à exécuter, protégeant ainsi les utilisateurs et les serveurs des attaques malveillantes.
