@@ -2,8 +2,8 @@
 
 Dans ce challenge de CTF, la vulnérabilité repose sur une vérification des en-têtes HTTP envoyés par le client. Le site impose deux conditions spécifiques pour accéder à certaines fonctionnalités :
 
-- L'origine de la requête doit provenir de **https://www.nsa.gov/**.
-- Le navigateur utilisé doit avoir comme **User-Agent** "ft_bornToSec".
+- L'origine de la requête doit provenir de **`https://www.nsa.gov/`**.
+- Le navigateur utilisé doit avoir comme **`User-Agent`** "ft_bornToSec".
 
 Ces conditions sont visibles dans le code source de la page, mais ne sont pas contrôlées côté serveur de manière sécurisée. Nous pouvons donc les contourner en manipulant les en-têtes HTTP.
 
