@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import requests
+import requests, time
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 
@@ -29,6 +29,8 @@ def find_readme_links(base_url, html_content, visited_urls):
         # Vérifier si c'est un fichier README
         if 'README' in href:
             cpt+=1
+            if cpt % 10000 == 0:
+                time.sleep(100)
             response = requests.head(full_url)
             size = response.headers.get('Content-Length')
             print("\r", cpt, end="", flush=True)

@@ -2,21 +2,22 @@ import requests
 from bs4 import BeautifulSoup
 
 # URL de base
-base_url = "http://10.11.249.37/.hidden/"
+address = input("Donnez l'addresse IP du serveur darkly : ")
+base_url = "http://" + address + "/.hidden/whtccjokayshttvxycsvykxcfm/"
 readme_content = []
 
 # Fonction pour parcourir un répertoire
 def explore_directory(url):
     response = requests.get(url)
-    
+
     # Vérifie si la requête est réussie
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
-        
+
         # Parcourt chaque lien trouvé dans la page
         for link in soup.find_all('a'):
             href = link.get('href')
-            
+
             # Ignore les liens vers les répertoires parent et actuels
             if href not in ['../']:
                 # Si c'est un sous-répertoire, on le parcourt récursivement
