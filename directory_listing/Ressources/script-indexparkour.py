@@ -27,7 +27,7 @@ def find_readme_links(base_url, html_content, visited_urls):
         visited_urls.add(full_url)
 
         # Vérifier si c'est un fichier README
-        if 'README' in href: 
+        if 'README' in href:
             cpt+=1
             response = requests.head(full_url)
             size = response.headers.get('Content-Length')
@@ -50,11 +50,12 @@ def main(start_url):
     index_content = get_html_content(start_url)
     if not index_content:
         return
-    
+
     find_readme_links(start_url, index_content, visited_urls)
     print("Ça fait beaucoup là, non ???")
 
 if __name__ == "__main__":
-    start_url = 'http://192.168.0.97/.hidden/'
+    address = input("Donnez l'addresse IP du serveur darkly : ")
+    start_url = 'http://' + address + '/.hidden/'
     main(start_url)
 
