@@ -1,4 +1,4 @@
-# Exploitation du cookie maudit
+# Exploitation du cookie IAM admin
 
 ## Étapes de l'exploitation
 
